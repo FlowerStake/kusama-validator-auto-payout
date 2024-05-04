@@ -2,7 +2,7 @@
 
 Claim and distribute validator staking rewards for your stakers automagically in Kusama Network Substrate blockchain.
 
-Made with ❤️ from ColmenaLabs_SVQ! Adapted to Kusama Network by Jimi Flowers (https://flowerstake.io)
+Made with ❤️  from ColmenaLabs_SVQ! Adapted with all current changes to Kusama Network by Jimi Flowers (https://flowerstake.io)
 
 ## Install NodeJS, clone repo and install modules
 
@@ -50,10 +50,10 @@ Example output:
 
  - Adapted to Kusama Network by Jimi Flowers https://flowerstake.io/
 
- -> Validator stash address is 4CDo1enKQhb7EXYh91yfANuxRS7VdEfuHb8SxQRvw173jpPd
- -> Importing account 4G6qCzHmfKgk9W5QBidVndsbhXQ2PvfUDu1YKuizqfDP7j3y
+ -> Validator stash address is CDo1enKQhb7EXYh91yfANuxRS7VdEfuHb8SxQRvw173jpPd
+ -> Importing account CzHmfKgk9W5QBidVndsbhXQ2PvfUDu1YKuizqfDP7j3y
  -> Connecting to wss://testnet-rpc.kusama.tools
- -> Account 4G6qCzHmfKgk9W5QBidVndsbhXQ2PvfUDu1YKuizqfDP7j3y free balance is 10.58 ktTNT
+ -> Account CzHmfKgk9W5QBidVndsbhXQ2PvfUDu1YKuizqfDP7j3y free balance is 10.58 KSM
  -> Current era is 730
  -> Unclaimed eras: [720,729]
  -> Paying Era: 720
