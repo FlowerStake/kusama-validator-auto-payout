@@ -1,0 +1,32 @@
+{
+  "name": "kusama-validator-auto-payout",
+  "version": "1.0.0",
+  "description": "Auto payout script for kusama Network Substrate based blockchain",
+  "main": "autopayout.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FlowerStake/kusama-validator-auto-payout"
+  },
+  "keywords": [
+    "blockchain",
+    "substrate",
+    "kusama-network",
+    "validator",
+    "POS"
+  ],
+  "author": "JimiFlowers",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@ares-protocol/type-definitions": "1.0.0",
+    "@polkadot/api": "^7.11.1",
+    "@polkadot/ui-keyring": "^1.1.1",
+    "@polkadot/ui-settings": "^1.1.1",
+    "bignumber": "^1.1.0",
+    "bignumber.js": "^9.1.2",
+    "prompts": "^2.4.0",
+    "yargs": "^17.3.1"
+  }
+}
