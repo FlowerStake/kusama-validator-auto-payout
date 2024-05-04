@@ -130,7 +130,7 @@ const main = async () => {
 
     let transactions = [];
     let unclaimedRewards = [];
-    let era = activeEra > 84 ? activeEra - 4 : 0;
+    let era = activeEra > 84 ? activeEra - 84 : 0;
     let active = 0;
     let procesed = 0;
 
