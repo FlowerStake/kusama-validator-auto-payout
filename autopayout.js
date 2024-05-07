@@ -163,29 +163,35 @@ const main = async () => {
       let blockHash = [];
       let extrinsicHash = [];
       let extrinsicStatus = null;
-      for (let index = 0; index < unclaimedRewards.length; index++) {
-	console.log(`\x1b[1m -> Processing Payout for Era: \x1b[0m\x1b[1;33m${unclaimedRewards[index]}\x1b[0m`);
-	await api.tx.staking.payoutStakers(validator,unclaimedRewards[index])
-              .signAndSend(signer,{ nonce },({ status }) => {
-               	 extrinsicStatus = status.type
-                 if (status.isInBlock) {
-                    extrinsicHash.push = status.asInBlock.toHex()
-                 } else if (status.isFinalized) {
-                    blockHash.push = status.asFinalized.toHex()
-                 }
-              })
-	nonce = await api.rpc.system.accountNextIndex(address);
-        console.log(`\t\x1b[1;32mPayout Success!\x1b[0m\n`);
-        //fs.appendFileSync(`/var/log/autopayout.log`, `${date_string} - Claimed rewards for Era ${unclaimedRewards[index]}\n`);
+      let totalEras = "";
 
+      for (let index = 0; index < unclaimedRewards.length; index++) {
+        totalEras += unclaimedRewards[index] + ",";
       }
 
+      totalEras = totalEras.slice(0, -1);
+
+      console.log(`\x1b[1m -> Processing Payout for Eras: \x1b[0m\x1b[1;33m${totalEras}\x1b[0m`);
+
+      await api.tx.utility.batch(transactions)
+              .signAndSend(signer, ({status}) => {
+                 if (status.isInBlock) {
+                      console.log(`\x1b[1m -> Transaction included in block: ${status.asInBlock}:`);
+              }
+      });
+
+      console.log(`\t\x1b[1;32mPayout Success!\x1b[0m\n`);
+
     } else {
+
       console.log(`\n\x1b[33m\x1b[1mWarning! There are no unclaimed rewards, exiting!\x1b[0m\n`);
-      //fs.appendFileSync(`/var/log/autopayout.log`, `${date_string} - Warning! There are no unclaimed rewards, exiting!\n`);
+
     }
+
     process.exit(0);
+
   }
+
 }
 
 try {
