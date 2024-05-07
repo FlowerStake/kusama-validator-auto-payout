@@ -156,29 +156,37 @@ const main = async () => {
             let blockHash = [];
             let extrinsicHash = [];
             let extrinsicStatus = null;
-	    console.log(`\n\n\x1b[1m -> Processing \x1b[0m\x1b[1;33m${unclaimedRewards[validator_name].length}\x1b[0m\x1b[1m Pending Payouts for \x1b[44m\x1b[1;33m${validator_name}\x1b[0m`);
-            for (let index = 0; index < unclaimedRewards[validator_name].length; index++) {
-               console.log(`\n\t\x1b\x1b[1m -> Paying Era: ${unclaimedRewards[validator_name][index]}\x1b[0m`);
-               await api.tx.staking.payoutStakers(validator_address,unclaimedRewards[validator_name][index])
-                 .signAndSend(signer,{ nonce },({ status }) => {
-                    extrinsicStatus = status.type
-                    if (status.isInBlock) {
-                       extrinsicHash.push = status.asInBlock.toHex()
-                    } else if (status.isFinalized) {
-                       blockHash.push = status.asFinalized.toHex()
-                    }
-                 })
-              nonce = await api.rpc.system.accountNextIndex(address);
-              console.log(`\t\x1b[1;32m Payout Success!\x1b[0m`);
-              fs.appendFileSync(`/var/log/autopayout_multiple.log`, `${date_string} - Validator ${validator_name}: Claimed rewards for Era ${unclaimedRewards[validator_name][index]}, transaction hash is ${extrinsicHash[index]}`);
+	    let totalEras = "";
+
+	    for (let index = 0; index < unclaimedRewards.length; index++) {
+	       totalEras += unclaimedRewards[index] + ",";
 	    }
-         } else {
+
+	    totalEras = totalEras.slice(0, -1);
+
+	    console.log(`\x1b[1m -> Processing Payout for Eras: \x1b[0m\x1b[1;33m${totalEras}\x1b[0m`);
+
+	    await api.tx.utility.batch(transactions)
+	            .signAndSend(signer, ({status}) => {
+        	        if (status.isInBlock) {
+                	   console.log(`\x1b[1m -> Transaction included in block: ${status.asInBlock}:`);
+	       		}
+	    });
+
+	    console.log(`\t\x1b[1;32mPayout Success!\x1b[0m\n`);
+
+	 } else {
+
             console.log(`\n\x1b[1;33m\x1b[1mWarning! There are no unclaimed rewards for \x1b[0m\x1b[1;33m\x1b[41m${validator_name}!\x1b[0m\n`);
-            fs.appendFileSync(`/var/log/autopayout_multiple.log`, `${date_string} - There are no unclaimed rewards for ${validator_name}\n`);
+
          }
+
     }
+
     process.exit(0);
+
   }
+
 }
 
 try {
