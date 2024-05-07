@@ -56,9 +56,7 @@ Example output:
  -> Account CzHmfKgk9W5QBidVndsbhXQ2PvfUDu1YKuizqfDP7j3y free balance is 10.58 KSM
  -> Current era is 730
  -> Unclaimed eras: [720,729]
- -> Paying Era: 720
-         Payout Success!
- -> Paying Era: 729
+ -> Paying Eras: 720, 729
          Payout Success!
 
 ```
