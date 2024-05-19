@@ -50,7 +50,7 @@ const argv = yargs
 const accountJSON = argv.account || config.accountJSON;
 
 // Password param
-let password = argv.password || "j4im3fl0";
+let password = argv.password || config.password;
 
 // Logging to file param
 const log = argv.log || config.log;
